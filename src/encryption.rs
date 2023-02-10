@@ -17,10 +17,10 @@ use rsa::{
  */
 pub fn encrypt(data: &[u8], public_key: &rsa::RsaPublicKey) -> Vec<u8> {
     // Create Random AES Secret
-    let aes_secret = [0u8; 32]; //random_bytes::<32>();
+    let aes_secret = random_bytes::<32>();
 
     // Create arbitrary iv
-    let iv = vec![0u8; 32]; //random_bytes::<32>().to_vec();
+    let iv = random_bytes::<32>().to_vec();
 
     // Encrypt data with AES256CBC
     let cipher = Cipher::new_256(&aes_secret);

