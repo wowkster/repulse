@@ -1,3 +1,5 @@
+use std::{fs, io, path::Path};
+
 #[macro_export]
 macro_rules! wcstr {
     ($string:literal) => {{
@@ -30,4 +32,21 @@ macro_rules! high_dword {
     ($name: ident) => {
         ((($name & 0xFFFF0000) >> 16) as u16)
     };
+}
+
+pub fn ensure_path_and_write<P, C>(path: P, contents: C) -> io::Result<()>
+where
+    P: AsRef<Path>,
+    C: AsRef<[u8]>,
+{
+    let path = path.as_ref();
+    let contents = contents.as_ref();
+
+    if let Some(parent) = path.parent() {
+        std::fs::create_dir_all(parent)?;
+    }
+
+    fs::write(path, contents)?;
+
+    Ok(())
 }

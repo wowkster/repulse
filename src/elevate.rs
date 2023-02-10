@@ -1,14 +1,9 @@
 use std::{os::windows::process::CommandExt, path::PathBuf, process::Command, time::Duration};
 
-use rust_embed::RustEmbed;
+
 use winapi::um::winbase::CREATE_NO_WINDOW;
 
-use crate::debug;
-
-#[derive(RustEmbed)]
-#[folder = "assets/"]
-struct Assets;
-
+use crate::{assets::Assets, debug};
 /**
  * If already elevated, continues as normal.
  * Otherwise it will use Akagi64 to spawn an escalated version of itself and kill the original process.

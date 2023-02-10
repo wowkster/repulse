@@ -24,6 +24,7 @@ use winapi::{
 };
 
 pub fn create_popup_window() {
+    // SAFETY: Compliant usage of Win32 API functions to create and manage an application window
     unsafe {
         /* Register the window class */
 
