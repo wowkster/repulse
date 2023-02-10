@@ -8,12 +8,23 @@ edition = "2021"
 [dependencies]
 is_elevated = "0.1.2"
 lazy_static = "1.4.0"
+rust-embed = { version = "6.4.2", features = ["compression"] }
 tasklist = "0.2.12"
-winapi = { version = "0.3.9", features = ["winuser", "libloaderapi", "winbase"] }
+winapi = { version = "0.3.9", features = [
+    "winuser",
+    "libloaderapi",
+    "winbase",
+] }
 
 [build-dependencies]
 embed-manifest = "1.3.1"
 embed-resource = "1.8.0"
+
+[profile.dev]
+lto = true
+debug = true
+opt-level = "s"
+panic = "unwind"
 
 [profile.release]
 lto = true

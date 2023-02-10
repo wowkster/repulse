@@ -68,6 +68,8 @@ unsafe extern "system" fn task_key_hook_ll(code: i32, wp: WPARAM, lp: LPARAM) ->
         let is_alt_esc = pkh.vkCode == VK_ESCAPE as u32 && pkh.flags & LLKHF_ALTDOWN != 0;
         let is_windows = pkh.vkCode == VK_LWIN as u32 || pkh.vkCode == VK_RWIN as u32;
 
+        // TODO: Whitelist instead of blacklist?
+
         if is_enter && (is_ctrl_esc || is_alt_tab || is_alt_esc || is_windows) {
             if wp == WM_SYSKEYDOWN as usize || wp == WM_KEYDOWN as usize {
                 MessageBeep(0);
