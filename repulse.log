@@ -1,0 +1,25 @@
+[DEBUG] [USER] [2023-02-10][05:12:24] Running in non-elevated state. Attempting elevation with Akagi64.
+[DEBUG] [USER] [2023-02-10][05:12:24] Successfully extracted Akagi binary. Running self with Akagi64.
+[DEBUG] [USER] [2023-02-10][05:12:24] Successfully ran Akagi64! Exiting original process.
+[DEBUG] [ADMIN] [2023-02-10][05:12:24] Successfully ran as elevated local administrator. Cleaning up elevation garbage.
+[DEBUG] [ADMIN] [2023-02-10][05:12:24] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:24] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:25] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:25] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:26] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:26] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:27] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:27] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:28] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:28] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Failed to remove Akagi64.exe: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Starting ransom process
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Creating ransom context
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Successfully loaded context from disk!
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Encrypting files!
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Encrypted all files!
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Decrypting files!
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Decrypted all files!
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] (PANIC): panicked at 'not yet implemented: Spawn thread pool to encrypt files', src\ransom.rs:378:5
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Working directory = Ok("C:\\Users\\adrian\\Documents\\Code\\wowkster\\repulse")
+[DEBUG] [ADMIN] [2023-02-10][05:12:29] Current binary = Ok("\\\\?\\C:\\Users\\adrian\\Documents\\Code\\wowkster\\repulse\\target\\x86_64-pc-windows-msvc\\release\\repulse.exe")

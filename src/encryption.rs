@@ -12,8 +12,8 @@ use rsa::{
  *
  * Encrypted payload format:
  *
- * |      First 256 Bytes      |   Second 256 Bytes   |      Variable Length      |
- * | < RSA Encrypted Secret >  |   <    AES IV    >   | < AES256 Encrypted Data > |
+ * |      First 256 Bytes      |     Second 32 Bytes     |      Variable Length      |
+ * | < RSA Encrypted Secret >  |   <    AES256 IV    >   | < AES256 Encrypted Data > |
  */
 pub fn encrypt(data: &[u8], public_key: &rsa::RsaPublicKey) -> Vec<u8> {
     // Create Random AES Secret
